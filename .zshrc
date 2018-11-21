@@ -11,7 +11,7 @@ export EDITOR='vim'
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
-
+cd Documents
 function chpwd() {
     emulate -L zsh
     ls 
@@ -114,3 +114,4 @@ source ~/.bin/tmuxinator.zsh
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
