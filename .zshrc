@@ -3,15 +3,15 @@ export PATH="/home/linus/bin:/usr/local/bin:$PATH"
 export PATH="/home/linus/anaconda3/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/linus/.oh-my-zsh"
+export ZSH="/home/linus/.oh-my-zsh"
 # settings for tmuxinator
 export EDITOR='vim'
 #source ~/.tmuxinator.zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
-cd Documents
+POWERLEVEL9K_MODE='awesome-fontconfig'
+ZSH_THEME="powerlevel9k/powerlevel9k"
 function chpwd() {
     emulate -L zsh
     ls 
@@ -115,3 +115,17 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
+function stopwatch(){
+  date1=`date +%s`; 
+   while true; do 
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
+    sleep 0.1
+   done
+}
+function countdown(){
+   date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
