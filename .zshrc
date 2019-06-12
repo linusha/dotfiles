@@ -129,3 +129,4 @@ function countdown(){
      sleep 0.1
    done
 }
+source ~/.zshrc_personal

@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -12,14 +11,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'itchyny/lightline.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'iamcco/mathjax-support-for-mkdp'
-Plugin 'iamcco/markdown-preview.vim'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'vim-ruby/vim-ruby'
 
 call vundle#end()            " required
@@ -37,7 +30,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 "integration for github flavored markdown
-let vim_markdown_preview_github=1
+" let vim_markdown_preview_github=1
 
 "settings for the lightline statusline
 set laststatus=2
@@ -47,7 +40,7 @@ set noshowmode
 set number
 
 "update time for gitgutter to work as expected
-set updatetime=100
+"set updatetime=100
 
 "set colorscheme for statusline
 let g:lightline = {
@@ -69,7 +62,22 @@ nnoremap <space> za
 "set encoding to utf8
 set encoding=utf-8
 
-autocmd BufRead *.md command Preview MarkdownPreview
-autocmd BufRead *.tex command Preview LLPStartPreview
-
 set textwidth=80
+let &colorcolumn="80,".join(range(120,999),",")
+" Disable Arrow keys in Escape mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
